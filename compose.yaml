@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  api:
+    image: hasura/graphql-engine:v2.20.0
+    environment:
+      - HASURA_GRAPHQL_ENABLE_CONSOLE=true
+      - HASURA_GRAPHQL_DEV_MODE=true
+      - HASURA_GRAPHQL_PG_CONNECTIONS=15
+    command: graphql-engine --database-url $DATABASE_URL serve --server-port $PORT 
+
+  supertokens:
+    image: registry.supertokens.io/supertokens/supertokens-postgresql
+    ports:
+      - 3567:3567
+    environment:
+      POSTGRESQL_CONNECTION_URI: "postgresql://postgres:ltQLvP4kmEYaYgKh62Ch@containers-us-west-156.railway.app:6697/railway"
